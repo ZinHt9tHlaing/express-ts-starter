@@ -1,9 +1,8 @@
 import express, { Application } from "express";
-import dotenv from "dotenv";
 import { routes } from "./routes/routeIndex";
 import { logger } from "./utils/logger";
 import bodyParser from "body-parser";
-dotenv.config();
+import "dotenv/config";
 
 const app: Application = express();
 
