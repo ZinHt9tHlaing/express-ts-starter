@@ -1,9 +1,7 @@
 import { Application, Router } from "express";
-import { ProductRouter } from "./productRoute";
+import { authRoute } from "./authRoute";
 
-const _routes: Array<[string, Router]> = [
-  ["/product", ProductRouter]
-];
+const _routes: Array<[string, Router]> = [["/product", authRoute]];
 
 export const routes = (app: Application) => {
   _routes.forEach((route) => {

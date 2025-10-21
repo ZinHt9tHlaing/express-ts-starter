@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import { routes } from "./routes/routeIndex";
 import bodyParser from "body-parser";
 import helmet from "helmet";
@@ -28,3 +28,12 @@ app
 
 // dynamic routes
 routes(app);
+
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  const status = error.status || 500;
+  const message = error.message || "Server Error";
+  const errorCode = error.code || "Error_Code";
+
+  res.status(status).json({ message, error: errorCode });
+  next();
+});
